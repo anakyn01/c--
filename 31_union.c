@@ -1,3 +1,17 @@
+union myUnion{int myNum;char myLetter;char myString[30];
+};
+
+int main(){
+union myUnion u1;
+//엑세스 유니온 맴버
+u1.myNum = 1000;
+u1.myLetter = 'A';
+printf("중요 : 모든 맴버가 동일한 메모리를 공유하므로 하나만 변경하면 다른 맴버에도 영향을 미칩니다 마지막으로 할당된 맴버만 유효한 값을 가집니다");
+printf("myNum: %d\n", u1.myNum);
+printf("myLetter : %c\n", u1.myLetter);
+
+return 0;
+}
 /*
 C Unions
 - 공용체는 구조체 와 유사하며 , 서로 다른 데이터 유형의 맴버를 
