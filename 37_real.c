@@ -1,6 +1,15 @@
 #include <stdio.h>//입출력 함수 사용
 #include <stdlib.h>//동적메모리
 
+/*
+malloc() 메모리 새로할당
+realloc() 기존메모리 블록 크기변경
+sizeof(*ptr1) int의 크기를 자동으로 계산
+ptr1, ptr2 메모리 블록을 가르키는 포인터
+%p포멧 포인터 주소 출력
+%d포멧 정수(바이트 수)출력
+*/
+
 int main() {
     int *ptr1, *ptr2, size; //변수 정의 ptr1(처음 할당한 메모리 블록) ptr2는 다시 할당한 메모리, size는 동적메모리 크기를 저장하는 변수
 
@@ -16,7 +25,20 @@ int main() {
     //에는 재할당된 메모리가 저장됩니다(같은 주소일수도 있고 새로운 주소일수도 있습니다)
     ptr2 = realloc(ptr1, size);
 
+    if (ptr1 == NULL){//일을 두번하지 말고 한번에 끝내려면 안정장치를 해놓음
+        fprintf(stderr, "malloc faild\n");
+        exit(1);
+    }//printf는 고정형으로 모니터로만 출력 스트림을 특정파일로 지정
+
     printf("%d bytes reallocated at address %p \n", size, ptr2);
+
+    //실무에서는 fprintf 
+    /*
+    printf는 출력버퍼에 저장되어 있다가 화면에 출력되어 버퍼에 찰때 시간이 있음
+    그때문에 그사이에 프로그램이 죽을 경우 버퍼의 내용을 확인하지 못함
+
+    그러나 fprintf(stderr)는 버퍼없이 바로 출력이 됩니다
+    */
 
 
 //2) 16바이트 메모리를 힙영역[동적 메모리 할당이 이루어 지는 메모리 공간] 할당하고 그주소를 ptr1에 저장합니다
@@ -38,7 +60,7 @@ First In First Out 선입선출
 
 
 
-    return 0; //exit(0)
+    return 0; //exit(0) exit(1) 당장(문제가 생겨서 비정상적으로 종료됨)
 }
 
 /*
