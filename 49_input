@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+/*
+fgets() : 버퍼오버플로우 방지
+strcspn() : \n제거 깔끔한 출력 가능
+*/
+//string complement span
+
+//
+int main(){
+   char name[100]; //name이라는 문자배열 99자의 이름 + \0 null
+   //문자열을 그지점에서 강제 종료
+
+   do {
+    printf(" 이름을 입력하세요 : ");
+    fgets(name, sizeof(name), stdin);
+    //한줄의 문자열을 표준입력(stdin)에서 읽어 옵니다
+    name[strcspn(name, "\n")] = 0;
+//는 name문자열에 첫번째 \n문자의 인덱스를 반환합니다
+//개행문자를 제거합니다
+//이렇게 하면 fgets()로 입력한 문자열으 끝에 남는 개행문자를 제거할수 있습니다    
+   }while (strlen(name) == 0);
+/*입력받은 문자열의 길이가 0이라면 즉 아무것도 입력하지 
+않은경우 다시 입력을 요청합니다*/
+printf("Hello , %s\n", name);
+
+   int number;
+
+   do{
+    printf("1부터 5사이의 숫자를 입력하세요");
+scanf("%d", &number);//입력한 숫자를 읽기
+while(getchar() != '\n');//입력버퍼에 남아있는 엔터이후의 문자들을 제거합니다
+//3ㅇㅇ 3은 저장되지만 oo버퍼에 남은 문자들을 제거하라는 의미
+}while(number <1 || number > 5);
+printf("입력한 숫자는 : %d\n", number);
+    return 0;
+}
+
+//숫자가 허용범위내에 있는지 확인 합니다
+/*
+Input Validation 입력검증
+- 숫자를 입력하는곳은 숫자로
+- 범위를 벗어나면 안됨
+- 텍스트 입력 검증 등 여러가지 가 잇습니다
+*/
+/*
+fgets는 "hello\n" 이장 되어 있을때
+줄바꿈 문자를 포함해서 저장해 줍니다
+
+
+*//*
+fgets는 "hello\n" 이장 되어 있을때
+줄바꿈 문자를 포함해서 저장해 줍니다
+
+
+*/    /*
+fgets는 "hello\n" 이장 되어 있을때
+줄바꿈 문자를 포함해서 저장해 줍니다
+
+
+*/
+/*
+fgets는 "hello\n" 이장 되어 있을때
+줄바꿈 문자를 포함해서 저장해 줍니다
+
+
+*/
